@@ -46,7 +46,7 @@ export default function App() {
       <header className="header-bar">
         <div className="page-wrap flex h-[72px] items-center justify-between">
           <a href="#top" aria-label="Back to top" className="group flex items-center gap-3">
-            <span className="display flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ink)] text-sm font-bold text-[var(--paper)] transition-transform group-hover:-rotate-6">G.</span>
+            <span className="display flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ink)] text-sm font-bold text-[var(--paper)] transition-transform group-hover:-rotate-6">GD</span>
             <span className="display text-[15px] font-bold">GAURI DESHMUKH<span className="text-[var(--coral)]"></span></span>
           </a>
           <nav className="hidden items-center gap-9 md:flex" aria-label="Main navigation">
@@ -227,7 +227,7 @@ export default function App() {
           <div className="scroll-reveal mx-auto w-full max-w-[200px] md:sticky md:top-28">
             <div className="aspect-[4/5] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--card)]">
               <img
-                src="/about-photo.jpg"
+                src="/about-photo.png"
                 alt="Gauri Deshmukh"
                 className="h-full w-full object-cover"
                 loading="lazy"
