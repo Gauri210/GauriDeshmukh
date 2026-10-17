@@ -65,19 +65,26 @@ export default function App() {
         )}
       </header>
 
-      <section id="top" className="page-wrap pb-20 pt-20 md:pb-28 md:pt-28">
-        <div className="mx-auto max-w-[820px] text-center">
-          <h1 className="display reveal text-[clamp(2.8rem,8vw,6.4rem)] font-semibold leading-[.98] tracking-[-.045em] text-[var(--ink)]">
+      <section id="top" className="page-wrap flex min-h-[72svh] items-center py-10 md:py-12">
+        <div className="mx-auto w-full max-w-[1200px] text-center">
+          <h1 className="display reveal text-[clamp(2.2rem,8.8vw,7.5rem)] font-semibold leading-[.98] tracking-[-.045em] text-[var(--ink)]">
             GAURI DESHMUKH<span className="text-[var(--coral)]"></span>
           </h1>
 
-          <p className="eyebrow soft reveal reveal-delay mt-5">Curious by nature</p>
+          <p className="eyebrow hero-tagline soft reveal reveal-delay mt-5">Curious by nature</p>
 
-          <div className="reveal reveal-delay-2 mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a href="#work" className="group inline-flex items-center gap-3 rounded-full bg-[var(--ink)] px-6 py-3.5 text-[13px] font-semibold text-[var(--paper)] transition-colors hover:bg-[var(--coral)]">
+          <img
+            src="/botanical-flower.png"
+            alt=""
+            aria-hidden="true"
+            className="reveal reveal-delay-2 mx-auto mt-5 h-[170px] w-auto sm:h-[190px]"
+          />
+
+          <div className="reveal reveal-delay-2 mt-5 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <a href="#work" className="group inline-flex items-center gap-3 rounded-full bg-[var(--ink)] px-5 py-3 text-[12px] font-semibold text-[var(--paper)] transition-colors hover:bg-[var(--coral)] sm:px-6 sm:py-3.5 sm:text-[13px]">
               Explore selected work <ArrowDown size={15} className="transition-transform group-hover:translate-y-1" />
             </a>
-            <a href="#about" className="inline-flex items-center gap-2 rounded-full border border-[var(--ink)] px-6 py-3.5 text-[13px] font-semibold transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]">
+            <a href="#about" className="inline-flex items-center gap-2 rounded-full border border-[var(--ink)] px-5 py-3 text-[12px] font-semibold transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)] sm:px-6 sm:py-3.5 sm:text-[13px]">
               About Me <ArrowDown size={15} />
             </a>
           </div>
@@ -85,19 +92,19 @@ export default function App() {
       </section>
 
       <section id="work" className="page-wrap section-pad">
-        <div className="scroll-reveal mb-12 flex flex-col justify-between gap-6 md:mb-14 md:flex-row md:items-end">
+        <div className="scroll-reveal mb-10 flex flex-col justify-between gap-5 lg:mb-12 lg:flex-row lg:items-end">
           <div>
             <p className="eyebrow coral-text mb-4 flex items-center gap-2"><Circle size={7} fill="currentColor" /> Projects</p>
             <h2 className="display text-[clamp(2.8rem,6vw,5rem)] font-semibold leading-[.95]">Selected work<span className="text-[var(--coral)]"></span></h2>
           </div>
           <p className="soft max-w-[340px] text-[15px] leading-[1.7]"></p>
         </div>
-        <div className="grid gap-6 md:grid-cols-6">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-6">
           {projects.map((p, i) => (
             <article
               key={p.id}
               className={`project-card scroll-reveal flex flex-col overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--card)] ${
-                i < 2 ? 'md:col-span-3' : 'md:col-span-2'
+                i < 2 ? 'xl:col-span-3' : 'xl:col-span-2'
               }`}
               style={{ transitionDelay: `${(i % 3) * 80}ms` }}
             >
@@ -167,7 +174,7 @@ export default function App() {
       </section>
 
       <section id="about" className="page-wrap section-pad">
-        <div className="grid gap-10 md:grid-cols-[1fr_200px] md:items-start">
+        <div className="grid gap-8 md:grid-cols-[1fr_180px] md:items-start lg:grid-cols-[1fr_200px] lg:gap-10">
           <div className="scroll-reveal">
             <p className="eyebrow coral-text mb-4 flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--coral)]" />
@@ -224,7 +231,7 @@ export default function App() {
           </div>
 
           {/* Small portrait box. Add your photo to public/about-photo.jpg (portrait crop, roughly 4:5). */}
-          <div className="scroll-reveal mx-auto w-full max-w-[200px] md:sticky md:top-28">
+          <div className="scroll-reveal mx-auto w-full max-w-[200px] lg:sticky lg:top-28">
             <div className="aspect-[4/5] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--card)]">
               <img
                 src="/about-photo.png"
