@@ -128,8 +128,8 @@ export default function App() {
                   {p.description}
                 </p>
 
-                {p.note && (
-                  <p className="soft mt-2.5 text-[13px] italic leading-[1.6]">{p.note}</p>
+                {p.dispatchNote && (
+                  <p className="soft mt-2.5 text-[13px] italic leading-[1.6]">{p.dispatchNote}</p>
                 )}
 
                 {open === p.id && (
