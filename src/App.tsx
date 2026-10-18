@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUpRight, Circle, FileText, Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 import { PROFILE, experience, interests, projects, skills } from '@/content';
 import { Artwork } from '@/components/Artwork';
+import { CustomCursor } from '@/components/CustomCursor';
 
 const NAV = [
   ['work', 'Selected work'],
@@ -41,6 +42,7 @@ export default function App() {
 
   return (
     <main className="portfolio min-h-[100dvh]">
+      <CustomCursor />
       <a href="#work" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded focus:bg-[var(--ink)] focus:px-4 focus:py-2 focus:text-[var(--paper)]">Skip to content</a>
 
       <header className="header-bar">

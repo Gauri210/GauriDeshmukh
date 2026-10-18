@@ -17,6 +17,7 @@ export function CustomCursor() {
   const [trailingPos, setTrailingPos] = useState({ x: -100, y: -100 });
   const [isPointer, setIsPointer] = useState(false);
   const [isGithubLink, setIsGithubLink] = useState(false);
+  const [isText, setIsText] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const [currentShape, setCurrentShape] = useState<ShapeType>('circle');
@@ -37,19 +38,22 @@ export function CustomCursor() {
       return;
     }
 
+    document.documentElement.classList.add('custom-cursor-active');
+
     const onMouseMove = (e: MouseEvent) => {
       setIsVisible(true);
       setPos({ x: e.clientX, y: e.clientY });
 
-      // Check target hierarchy for clickable/github
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
       const githubLink = target.closest('a[href*="github.com"]');
       const clickable = target.closest('a, button, input, textarea, select, [role="button"], [tabindex="0"]');
+      const text = target.closest('p, h1, h2, h3, h4, h5, h6, li, label, blockquote, a, button, [data-cursor-text]');
 
       setIsGithubLink(!!githubLink);
       setIsPointer(!!clickable);
+      setIsText(!!text);
     };
 
     const onMouseDown = (e: MouseEvent) => {
@@ -58,7 +62,7 @@ export function CustomCursor() {
       const githubLink = target?.closest('a[href*="github.com"]');
 
       let pickedShape: ShapeType = 'circle';
-      let rippleColor = 'var(--coral)';
+      let rippleColor = 'var(--cursor-navy)';
 
       if (githubLink) {
         // Cycle through cool shapes
@@ -127,6 +131,7 @@ export function CustomCursor() {
       window.removeEventListener('mouseup', onMouseUp);
       document.removeEventListener('mouseleave', onMouseLeave);
       cancelAnimationFrame(animId);
+      document.documentElement.classList.remove('custom-cursor-active');
     };
   }, []);
 
@@ -207,8 +212,8 @@ export function CustomCursor() {
         >
           {ripple.shape === 'circle' ? (
             <div
-              className="rounded-full border-2 border-[var(--coral)] animate-ping"
-              style={{ width: '40px', height: '40px', opacity: 0.8 }}
+              className="rounded-full border-2 animate-ping"
+              style={{ width: '40px', height: '40px', opacity: 0.8, borderColor: ripple.color }}
             />
           ) : (
             <div className="scale-up-fade flex items-center justify-center">
@@ -223,9 +228,11 @@ export function CustomCursor() {
         className={`cursor-halo absolute -translate-x-1/2 -translate-y-1/2 rounded-full border transition-[border-color,background-color,width,height,transform] duration-200 ease-out flex items-center justify-center ${
           isGithubLink
             ? 'border-[var(--coral)] bg-[var(--coral)]/10 ring-2 ring-[var(--coral)]/30'
+            : isText
+            ? 'border-[var(--cursor-magenta)] bg-[var(--cursor-magenta)]/10 ring-2 ring-[var(--cursor-magenta)]/20'
             : isPointer
-            ? 'border-[var(--ink)] bg-[var(--ink)]/10'
-            : 'border-[var(--ink)]/50 bg-[var(--coral)]/5'
+            ? 'border-[var(--cursor-navy)] bg-[var(--cursor-navy)]/10'
+            : 'border-[var(--cursor-navy)]/60 bg-[var(--cursor-navy)]/5'
         }`}
         style={{
           transform: `translate3d(${trailingPos.x}px, ${trailingPos.y}px, 0) translate(-50%, -50%) scale(${
@@ -235,7 +242,9 @@ export function CustomCursor() {
           height: isSpecialShape ? '46px' : isGithubLink ? '44px' : '36px',
           boxShadow: isGithubLink
             ? '0 0 16px rgba(107, 45, 92, 0.45)'
-            : '0 0 10px rgba(43, 27, 46, 0.15)',
+            : isText
+            ? '0 0 18px rgba(180, 35, 112, 0.25)'
+            : '0 0 12px rgba(36, 52, 91, 0.2)',
         }}
       >
         {isSpecialShape && renderShapeContent(currentShape, 22)}
@@ -247,7 +256,9 @@ export function CustomCursor() {
           className={`cursor-dot absolute -translate-x-1/2 -translate-y-1/2 rounded-full transition-transform duration-75 ${
             isGithubLink
               ? 'bg-[var(--coral)] ring-2 ring-[var(--paper)]'
-              : 'bg-[var(--ink)]'
+              : isText
+              ? 'bg-[var(--cursor-magenta)]'
+              : 'bg-[var(--cursor-navy)]'
           }`}
           style={{
             transform: `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%) scale(${
