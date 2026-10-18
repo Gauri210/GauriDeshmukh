@@ -71,7 +71,7 @@ export default function App() {
             GAURI DESHMUKH<span className="text-[var(--coral)]"></span>
           </h1>
 
-          <p className="eyebrow hero-tagline soft reveal reveal-delay mt-5">Curious by nature</p>
+          <p className="eyebrow hero-tagline soft reveal reveal-delay mt-5">Turning chaos into clarity</p>
 
           <img
             src="/botanical-flower.png"
